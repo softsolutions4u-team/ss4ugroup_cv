@@ -1,0 +1,66 @@
+.layout-theme h2.title {
+	font-family: Montserrat-Bold;
+}
+.layout-theme h3.caption {
+	font-family: Montserrat;
+}
+.layout-theme h2.title {
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 1.2;
+    letter-spacing: 0px;
+    font-style: normal;
+	margin: 0 0 14px 0;
+}
+.theme2 h2.title {
+	color: #191971;
+}
+.theme3 h2.title {
+	color: rgb(163, 44, 196);
+}
+.layout-theme h3.caption {
+	display: flex;
+	align-items: center;
+	font-size: 16px;
+	letter-spacing: 2px;
+	line-height: 1.2;
+	margin: 0;
+	min-height: 36px;
+}
+.layout-theme h4 {
+	margin: 0.5em 0;
+	font-family: Montserrat-Bold;
+	font-size: 18px;
+	line-height: 1.5;
+	color: #333c4e;
+	letter-spacing: 1px;
+}
+.layout-theme h5 {
+	margin-top: 20px !important;
+    margin-bottom: 15px !important;
+    color: rgb(51, 51, 51);
+    font-size: 20px;
+	font-family: Montserrat;
+	letter-spacing: 0;
+    line-height: 1.5;
+}
+.layout-theme h6 {
+	margin: 0 0 31px;
+	font-family: Georgia, serif;
+    font-weight: 400;
+	text-transform: none;
+    letter-spacing: 1px;
+    font-style: italic;
+	color: #7e8890;
+	font-size: 19px;
+	line-height: 1.95;
+	margin-bottom: 1.25em !important;
+}
+.layout-theme ul, .layout-theme li {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+.layout-theme .primary-menu a, .layout-theme a,.layout-theme a:hover {
+	text-decoration: none !important;
+}

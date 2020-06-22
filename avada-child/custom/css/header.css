@@ -1,0 +1,181 @@
+/*HEADER*/
+#site-header.layout-theme {
+	background-color: #1c212a;
+}
+.layout-theme .admin-bar .menu-modal {
+	top: 0;
+}
+.layout-theme button {
+	border: 0 !important;
+}
+.layout-theme table th {
+	font-family: Montserrat-bold;
+	letter-spacing: 1px;
+	line-height: 1.5;
+}
+.layout-theme table td, .layout-theme .primary-menu a, .layout-theme .modal-menu > li > a {
+	letter-spacing: 0;
+}
+.layout-theme .header-inner {
+	display: block;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+.layout-theme .header-inner.hide-logo .header-titles-wrapper {
+	display: none;
+}
+.layout-theme .header-navigation-wrapper {
+	min-height: 95vh;
+}
+.theme1 .header-navigation-wrapper {
+	min-height: calc(100vh + 10vh);
+}
+.layout-theme .header-inner.hide-logo {
+	margin-top: 30px;
+}
+.layout-theme ul.primary-menu {
+	padding: 0;
+}
+.layout-theme .primary-menu > li {
+	margin: 0;
+}
+.layout-theme .primary-menu > li > a {
+	margin: 0;
+	cursor: pointer;
+	padding: calc((65px - 15px)/ 2) 0;
+	/*padding: calc((65px - 25px)/ 2) 0;*/
+	min-height: 65px;
+	width: 100%;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+}
+.layout-theme .primary-menu a, .layout-theme .primary-menu i {
+	color: #505865 !important;
+}
+.layout-theme .primary-menu .menu-item:hover a, .layout-theme .primary-menu .menu-item:hover i,
+.layout-theme .primary-menu a.active, .layout-theme .primary-menu .active i,
+.layout-theme .primary-menu a.active-all, .layout-theme .primary-menu a.active-all i {
+	color: #9b1320 !important;
+}
+.theme4 .primary-menu .menu-item:hover a, .theme4 .primary-menu .menu-item:hover i,
+.theme4 .primary-menu a.active, .theme4 .primary-menu .active i,
+.theme4 .primary-menu a.active-all, .theme4 .primary-menu a.active-all i {
+	color: #cd4a26 !important;
+}
+.layout-theme .primary-menu a, .layout-theme .modal-menu > li > a {
+	font-family: Montserrat;
+	font-weight: 700;
+	font-size: 15px;
+	font-style: normal;
+	line-height: 1;
+}
+.layout-theme .primary-menu i {
+	font-size: 30px;
+	padding-bottom: .35em;
+}
+.layout-theme .nav-toggle i {
+	content: "\f0c9";
+	color: #505865;
+	font-size: 20px;
+}
+/*MOBILE-MENU*/
+.layout-theme .menu-modal {
+	display: none;
+	position: relative;
+	overflow: visible;
+	padding: 0;
+	transition: height .5s !important;
+	height: 0;
+	left: 0;
+	right: 0;
+	opacity: 1;
+}
+.layout-theme .menu-modal.active {
+	height: 300px;
+}
+.theme1 .menu-modal.active, .theme4 .menu-modal.active {
+	height: 350px;
+}
+.layout-theme .menu-modal .modal-inner, #site-header.layout-theme {
+	-ms-overflow-style: none;
+}
+.layout-theme .menu-modal .modal-inner::-webkit-scrollbar, #site-header.layout-theme::-webkit-scrollbar {
+	display: none;
+}
+.layout-theme .modal-menu .menu-item {
+	border-bottom: 1px solid rgba(80,88,101,0.2);
+}
+.layout-theme .modal-menu .menu-item.active, .layout-theme .modal-menu .menu-item:hover {
+	background-color: #252c38;
+}
+.layout-theme .modal-menu > li > a {
+	font-family: Lato;
+	font-size: 16px;
+	color: #505865;
+	padding: 0 12px 0 30px;
+	height: 49px;
+	display: flex;
+	align-items: center;
+}
+@media only screen and (min-width: 801px) {
+	.layout-theme .primary-menu-wrapper {
+		display: block;
+	}
+	.layout-theme .primary-menu > li > a {
+		padding-left: 40px;
+		padding-right: 40px;
+	}
+	#site-header.layout-theme {
+		position: fixed;
+		left: 0;
+		height: 100vh;
+		width: 215px;
+		z-index: 999;
+		overflow-x: scroll;
+	}
+	.layout-theme .header-inner .toggle,
+	.layout-theme + .menu-modal {
+		display: none;
+	}
+	.layout-theme .header-titles-wrapper {
+		margin: 50px 0px;
+		padding-left: 44px;
+		padding-right: 43px;
+	}
+	.layout-theme .site-logo a {
+		min-height: 36px;
+	}
+	.layout-theme .nav-toggle {
+		right: 1rem;
+	}
+}
+@media only screen and (max-width: 800px) {
+	.layout-theme .header-navigation-wrapper, .layout-theme .primary-menu-wrapper {
+		display: none;
+	}
+	.layout-theme .menu-modal-inner, #site-header.layout-theme {
+		background-color: rgb(35,42,52);
+	}
+	#site-header.layout-theme {
+		padding: 20px 30px;
+		max-height: 92px;
+		background-color: #1c212a;
+	}
+	.layout-theme .header-inner .toggle {
+		display: flex;
+		align-items: center;
+	}
+	.layout-theme .header-titles-wrapper {
+		width: 100%;
+		display: inline-flex;
+		justify-content: space-between;
+	}
+	.layout-theme .nav-toggle {
+		right: 1rem;
+	}
+	.layout-theme .menu-modal {
+		display: block;
+	}
+}

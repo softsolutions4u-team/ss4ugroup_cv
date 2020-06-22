@@ -1,0 +1,39 @@
+/*COMMON*/
+.layout-theme .footer-credits ul li a:hover {
+	color: #f4ad24;
+}
+
+/*THEME-1*/
+.theme1 .cv-btn, .theme1 .cv-btn:hover {
+	background: #000;
+}
+.theme1 .banner-content h2 {
+	color: #000;
+}
+
+/*THEME-2*/
+.theme2 .cv-btn {
+	background: #191971;
+}
+.theme2 .profile-details .title, .theme2 .profile-details .caption {
+	color: #191971;
+}
+
+/*THEME-3*/
+.theme3 .cv-btn,.theme3 .cv-btn:hover {
+	background: rgb(163, 44, 196);
+}
+.theme3 .profile-details .title {
+	color: rgb(163, 44, 196);
+}
+.theme3 .profile-details .caption {
+	color: #333c4e;
+}
+
+/*THEME-4*/
+.theme4 .cv-btn {
+	background: #cd4a26;
+}
+.theme4 .profile-details .title {
+	color: #cd4a26;
+}
