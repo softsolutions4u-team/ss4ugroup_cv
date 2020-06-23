@@ -202,32 +202,31 @@ get_header();
 					Enter Skills
 				</p>
 				<div class="clone-div">
-					<?php 
-						if ($resume_post_id) {
-							for ($i = 0; $i <= 6; $i++) {
-									if ($keyskill = get_post_meta($resume_post_id, 'key_skills_' . $i, true)) {
-									?>
-									<div class="cloned-input">
-										<input data-length="25" class="input-field text-field" type="text" name="key_skills[]" value="<?php echo $keyskill ?>">
-									   <span class="remove_button"><i class="fas fa-times pointer"></i></span>
-									</div>
-						            <?php 
-									}
-							}
-					   } ?>
+					<?php $count = 0; ?>
+					<?php if ($resume_post_id): ?>
+						
+						<?php while( the_repeater_field('key_skill', $resume_post_id) ): ?>
+							<div class="cloned-input">
+								<input data-length="25" class="input-field text-field" type="text" name="key_skills[]" value="<?php echo get_sub_field('skills', $resume_post_id) ?>">
+								<span class="remove_button"><i class="fas fa-times pointer"></i></span>
+							</div>
+							<?php $count++; ?>
+						<?php endwhile; ?>
+					
+					<?php endif; ?>
 				</div>
-				<div class="skills-input-section <?php echo $resume_post_id ? 'fadeOut' : '' ?>">
+				<div class="skills-input-section <?php echo $count >= 7 ? 'fadeOut' : '' ?>">
 						<input data-length="25" class="input-field text-field" type="text" id="key_skills" name="key_skills[]" value="">
 						<span class="add_button" title="Add field"><i class="fas fa-plus-circle pointer m-0"></i></span>
 				</div>
 				<div class="err-txt" style="display:none">
-					enter text
+					Enter Skill
 				</div>
 			</div>
 				
 <script>
 $(document).ready(function () {
-		jQuery('body').on('click', '.add_button', function () {
+		jQuery('body').on('click', '.skills .add_button', function () {
 			var ele    = jQuery(this).parents().find('#key_skills');
 			var name   = ele.attr('id');
 			var strc   = GetDynamicTextBox(ele.val(), name);
@@ -237,6 +236,7 @@ $(document).ready(function () {
 			} else if ( jQuery('.clone-div input[name="'+ name +'[]"]').length === 6 ) {
 				jQuery(".clone-div").append(strc);
 				jQuery(this).parent().addClass('fadeOut');
+				jQuery(this).prev().val("");
 				jQuery('.err-txt').hide();
 				return false;
 			} else {
@@ -441,42 +441,42 @@ $(document).ready(function () {
 					var work_exp_max = 6;
 					$('.add-work-experience').click(function () {
 						if ($('.added-more-work').length < work_exp_max) {
-							$('.added-more-works').append('<div class="added-more-work"><div class="work-date date-from"><p class="input-name">From</p><input data-length="10" placeholder="DD/MM/YYYY" class="input-field text-field date dateWork" type="text" name="work_exp[work_from][]"></div><div class="work-date date-to"><p class="input-name">To</p><input data-length="10" placeholder="DD/MM/YYYY" class="input-field text-field date tab-left dateWork" type="text" name="work_exp[work_to][]"></div><div class="name-align job-title"><p class="input-name">Job Title</p><input class="input-field text-field" type="text" id="jobTitle" name="work_exp[job_title][]" value=""></div><div class="name-align employer"><p class="input-name">Employer</p><input class="input-field text-field" type="text" id="employer" name="work_exp[employer][]" value=""></div><div class="responsibilities-details"><p class="input-name">Responsibilities</p><input class="input-field text-field" type="text" name="work_exp[work_responsibilities][]"><div class="responsibilities-list m-0 p-0"><span><a  href="javascript:void(0);" class="add_button"><i class="fas fa-plus-circle pointer m-0"></i></a></span></div></div><a href="javascript:void(0);" class="btnRemove"><i class="fas fa-times pointer"></i></a></div>');
+							$('.added-more-works').append('<div class="added-more-work"><div class="work-date date-from"><p class="input-name">From</p><input data-length="10" placeholder="DD/MM/YYYY" class="input-field text-field date dateWork" type="date" name="work_exp[work_from][]"></div><div class="work-date date-to"><p class="input-name">To</p><input data-length="10" placeholder="DD/MM/YYYY" class="input-field text-field date tab-left dateWork" type="date" name="work_exp[work_to][]"></div><div class="name-align job-title"><p class="input-name">Job Title</p><input class="input-field text-field" type="text" id="jobTitle" name="work_exp[job_title][]" value=""></div><div class="name-align employer"><p class="input-name">Employer</p><input class="input-field text-field" type="text" id="employer" name="work_exp[employer][]" value=""></div><div class="responsibilities-details"><p class="input-name">Responsibilities</p><input class="input-field text-field" type="text" name="work_exp[work_responsibilities][]"><div class="responsibilities-list m-0 p-0"><span><a  href="javascript:void(0);" class="add_button"><i class="fas fa-plus-circle pointer m-0"></i></a></span></div></div><a href="javascript:void(0);" class="btnRemove"><i class="fas fa-times pointer"></i></a></div>');
 						}
-						$(".dateWork").each(function(key,elem){
-							$(elem).attr('id', 'work_date_picker' + key)
-						})
+// 						$(".dateWork").each(function(key,elem){
+// 							$(elem).attr('id', 'work_date_picker' + key)
+// 						})
 
-                                                //calender from and to date
-                                                $(function() {
-                                                    $("#work_date_picker2, #work_date_picker4, #work_date_picker6, #work_date_picker8, #work_date_picker10, #work_date_picker12").datepicker({
-														changeMonth: true,
-   														changeYear: true,
-                                                        maxDate: new Date,
-                                                        minDate: new Date(2005, 6, 12),
-														dateFormat: 'dd/mm/yy'
-                                                    });
-                                                });
+//                                                 //calender from and to date
+//                                                 $(function() {
+//                                                     $("#work_date_picker2, #work_date_picker4, #work_date_picker6, #work_date_picker8, #work_date_picker10, #work_date_picker12").datepicker({
+// 														changeMonth: true,
+//    														changeYear: true,
+//                                                         maxDate: new Date,
+//                                                         minDate: new Date(2005, 6, 12),
+// 														dateFormat: 'dd/mm/yy'
+//                                                     });
+//                                                 });
 
-                                                $(function() {
-                                                    $("#work_date_picker3, #work_date_picker5, #work_date_picker7, #work_date_picker9, #work_date_picker11, #work_date_picker13").datepicker({
-														changeMonth: true,
-   														changeYear: true,
-                                                        maxDate: new Date,
-                                                        minDate: new Date(2005, 6, 12),
-														dateFormat: 'dd/mm/yy'
-                                                    });
-                                                });
+//                                                 $(function() {
+//                                                     $("#work_date_picker3, #work_date_picker5, #work_date_picker7, #work_date_picker9, #work_date_picker11, #work_date_picker13").datepicker({
+// 														changeMonth: true,
+//    														changeYear: true,
+//                                                         maxDate: new Date,
+//                                                         minDate: new Date(2005, 6, 12),
+// 														dateFormat: 'dd/mm/yy'
+//                                                     });
+//                                                 });
 
-                                                $('#work_date_picker2, #work_date_picker4, #work_date_picker6, #work_date_picker8, #work_date_picker10, #work_date_picker12').change(function() {
-                                                    startDate = $(this).datepicker('getDate');
-                                                    $("#work_date_picker3, #work_date_picker5, #work_date_picker7, #work_date_picker9, #work_date_picker11, #work_date_picker13").datepicker("option", "minDate", startDate);
-                                                })
+//                                                 $('#work_date_picker2, #work_date_picker4, #work_date_picker6, #work_date_picker8, #work_date_picker10, #work_date_picker12').change(function() {
+//                                                     startDate = $(this).datepicker('getDate');
+//                                                     $("#work_date_picker3, #work_date_picker5, #work_date_picker7, #work_date_picker9, #work_date_picker11, #work_date_picker13").datepicker("option", "minDate", startDate);
+//                                                 })
 
-                                                $('#work_date_picker3, #work_date_picker5, #work_date_picker7, #work_date_picker9, #work_date_picker11, #work_date_picker13').change(function() {
-                                                    endDate = $(this).datepicker('getDate');
-                                                    $("#work_date_picker2, #work_date_picker4, #work_date_picker6, #work_date_picker8, #work_date_picker10, #work_date_picker12").datepicker("option", "maxDate", endDate);
-                                                })
+//                                                 $('#work_date_picker3, #work_date_picker5, #work_date_picker7, #work_date_picker9, #work_date_picker11, #work_date_picker13').change(function() {
+//                                                     endDate = $(this).datepicker('getDate');
+//                                                     $("#work_date_picker2, #work_date_picker4, #work_date_picker6, #work_date_picker8, #work_date_picker10, #work_date_picker12").datepicker("option", "maxDate", endDate);
+//                                                 })
 						if ($('.added-more-work').length >= work_exp_max) {
 						 	$(".hide-add-work-experience").hide();
 							$("#work-experience-section").addClass('limit-exceed');
@@ -719,42 +719,42 @@ $(document).ready(function () {
 			var work_exp_max = 6;
 			$('.add-education').click(function () {
 				if ($('.added-more-education').length < work_exp_max) {
-					$('.added-more-educations').append('<div class="added-more-education"><div class="work-date date-from"><p class="input-name">From</p><input data-length="10" placeholder="DD/MM/YYYY" class="input-field text-field date dateEducation" type="text" name="education[education_from][]"></div><div class="work-date date-to"><p class="input-name">To</p><input data-length="10" placeholder="DD/MM/YYYY" class="input-field text-field date dateEducation" type="text" name="education[education_to][]"></div><div class="name-align institution"><p class="input-name">Institution</p><input class="input-field text-field" type="text" id="jobTitle" name="education[education_institution][]"></div><div class="name-align qualification"><p class="input-name">Qualification</p><input class="input-field text-field" type="text" id="employer" name="education[education_qualification][]"></div><div class="responsibilities-details"><p class="input-name">More Details</p><input class="input-field text-field" type="text" id="responsibilities" name="education[education_more_details][]"><div class="responsibilities-list m-0 p-0"><span><a  href="javascript:void(0);" class="add_button"><i class="fas fa-plus-circle pointer m-0"></i></a></span></div></div><a href="javascript:void(0);" class="btnRemove"><i class="fas fa-times pointer"></i></a>');
+					$('.added-more-educations').append('<div class="added-more-education"><div class="work-date date-from"><p class="input-name">From</p><input data-length="10" placeholder="DD/MM/YYYY" class="input-field text-field date dateEducation" type="date" name="education[education_from][]"></div><div class="work-date date-to"><p class="input-name">To</p><input data-length="10" placeholder="DD/MM/YYYY" class="input-field text-field date dateEducation" type="date" name="education[education_to][]"></div><div class="name-align institution"><p class="input-name">Institution</p><input class="input-field text-field" type="text" id="jobTitle" name="education[education_institution][]"></div><div class="name-align qualification"><p class="input-name">Qualification</p><input class="input-field text-field" type="text" id="employer" name="education[education_qualification][]"></div><div class="responsibilities-details"><p class="input-name">More Details</p><input class="input-field text-field" type="text" id="responsibilities" name="education[education_more_details][]"><div class="responsibilities-list m-0 p-0"><span><a  href="javascript:void(0);" class="add_button"><i class="fas fa-plus-circle pointer m-0"></i></a></span></div></div><a href="javascript:void(0);" class="btnRemove"><i class="fas fa-times pointer"></i></a>');
 				}
-                                $(".dateEducation").each(function(key,elem){
-                                    $(elem).attr('id', 'education_date_picker' + key)
-                                })
+//                                 $(".dateEducation").each(function(key,elem){
+//                                     $(elem).attr('id', 'education_date_picker' + key)
+//                                 })
 
-                                //calender from and to date
-                                $(function() {
-                                    $("#education_date_picker2, #education_date_picker4, #education_date_picker6, #education_date_picker8, #education_date_picker10, #education_date_picker12").datepicker({
-										changeMonth: true,
-										changeYear: true,
-										maxDate: new Date,
-										minDate: new Date(2005, 6, 12),
-										dateFormat: 'dd/mm/yy'
-									});
-                                });
+//                                 //calender from and to date
+//                                 $(function() {
+//                                     $("#education_date_picker2, #education_date_picker4, #education_date_picker6, #education_date_picker8, #education_date_picker10, #education_date_picker12").datepicker({
+// 										changeMonth: true,
+// 										changeYear: true,
+// 										maxDate: new Date,
+// 										minDate: new Date(2005, 6, 12),
+// 										dateFormat: 'dd/mm/yy'
+// 									});
+//                                 });
 
-                                $(function() {
-                                    $("#education_date_picker3, #education_date_picker5, #education_date_picker7, #education_date_picker9, #education_date_picker11, #education_date_picker13").datepicker({
-										changeMonth: true,
-										changeYear: true,
-										maxDate: new Date,
-										minDate: new Date(2005, 6, 12),
-										dateFormat: 'dd/mm/yy'
-									});
-                                });
+//                                 $(function() {
+//                                     $("#education_date_picker3, #education_date_picker5, #education_date_picker7, #education_date_picker9, #education_date_picker11, #education_date_picker13").datepicker({
+// 										changeMonth: true,
+// 										changeYear: true,
+// 										maxDate: new Date,
+// 										minDate: new Date(2005, 6, 12),
+// 										dateFormat: 'dd/mm/yy'
+// 									});
+//                                 });
 
-                                $('#education_date_picker2, #education_date_picker4, #education_date_picker6, #education_date_picker8, #education_date_picker10, #education_date_picker12').change(function() {
-                                    startDate = $(this).datepicker('getDate');
-                                    $("#education_date_picker3, #education_date_picker5, #education_date_picker7, #education_date_picker9, #education_date_picker11, #education_date_picker13").datepicker("option", "minDate", startDate);
-                                })
+//                                 $('#education_date_picker2, #education_date_picker4, #education_date_picker6, #education_date_picker8, #education_date_picker10, #education_date_picker12').change(function() {
+//                                     startDate = $(this).datepicker('getDate');
+//                                     $("#education_date_picker3, #education_date_picker5, #education_date_picker7, #education_date_picker9, #education_date_picker11, #education_date_picker13").datepicker("option", "minDate", startDate);
+//                                 })
 
-                                $('#education_date_picker3, #education_date_picker5, #education_date_picker7, #education_date_picker9, #education_date_picker11, #education_date_picker13').change(function() {
-                                    endDate = $(this).datepicker('getDate');
-                                    $("#education_date_picker2, #education_date_picker4, #education_date_picker6, #education_date_picker8, #education_date_picker10, #education_date_picker12").datepicker("option", "maxDate", endDate);
-                                })
+//                                 $('#education_date_picker3, #education_date_picker5, #education_date_picker7, #education_date_picker9, #education_date_picker11, #education_date_picker13').change(function() {
+//                                     endDate = $(this).datepicker('getDate');
+//                                     $("#education_date_picker2, #education_date_picker4, #education_date_picker6, #education_date_picker8, #education_date_picker10, #education_date_picker12").datepicker("option", "maxDate", endDate);
+//                                 })
 				if ($('.added-more-education').length >= work_exp_max) {
 // 					console.log('jh');
 					$(".hide-add-education").hide();

@@ -351,16 +351,14 @@ function add_custom_field_value_custom_resume_posttype() {
 		}
 
 		// unset keyskills
-		for($i = 0; $i <= 6; $i++ ) {
-			update_post_meta( $post_id,  'key_skills' .  $i , '');
-		}
-
+		delete_post_meta( $post_id,  'key_skill', '');
+		
 		// key skills
-		foreach($_POST['key_skills'] as $key => $value){
-			if (empty($value) || $key > 7) {
-				continue;
-			}
-			update_post_meta( $post_id, 'key_skills_' . $key, $value);
+		foreach(array_filter($_POST['key_skills']) as $value){
+			$row = array(
+				'skills'   => $value,
+			);
+			add_row('key_skill', $row, $post_id);
 		}
 
 		// unset work experience

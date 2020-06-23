@@ -56,21 +56,12 @@ foreach ($image_fields as $image_field => $defalutImage ) {
                             Key Skills
                         </h5>
                         <ul class="key-skills">
-                            <?php
-                            $keySkills = 0;
-                            while ($keySkills <= 6) {
-                                if (get_field('key_skills_' . $keySkills)) {
-                                    ?>
+                            <?php while( the_repeater_field('key_skill') ): ?>
                                     <li>
                                         <span><i class="fas fa-caret-right"></i></span>
-                                        <?php echo ucfirst(get_field('key_skills_' . $keySkills));
-                                    }
-                                    ?>
-                                </li>
-                                <?php
-                                $keySkills++;
-                            }
-                            ?>
+										<?php echo ucfirst(get_sub_field('skills')); ?>
+                                	</li>
+                                <?php endwhile; ?>
                         </ul>
                     </div>
                     <a href="#experience" class="cv-btn scroll-btn scroll-next">
