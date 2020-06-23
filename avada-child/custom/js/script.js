@@ -36,6 +36,11 @@ jQuery(document).ready(function () {
 				}, 800, 'linear')
 	});
 	
+    // 	LOADING BAR ACTIVE
+	jQuery('.layout-form .sumbit-btn').click(function () {
+		jQuery('.loader-image').addClass('active');
+	});
+	
 	//	COLOR PALLET SELECTION
 	if (jQuery('body').hasClass('video1')) {
 		jQuery('body .color-code.black').addClass('active');

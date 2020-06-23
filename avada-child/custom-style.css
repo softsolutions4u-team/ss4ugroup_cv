@@ -517,6 +517,12 @@ nav.woocommerce-MyAccount-navigation {
 	color: 5d5f64;
 	opacity: 0.5;
 }
+.layout-form input#contact-image,.layout-form  input#education-image,
+.layout-form input#hobbies-image,.layout-form input#work-experience-image,
+.layout-form input#personal-profile-image,.layout-form input#profile-image,
+.layout-form .fadeOut {
+	display: none;
+}
 .layout-form input:-webkit-autofill {
 	-webkit-box-shadow: 0 0 0px 1000px #fff inset;
 }
@@ -645,6 +651,18 @@ form.layout-form {
 	text-align: center;
 	margin: 35px 0 45px 0;
 }
+div .layout-form .skills-input-section input {
+	margin-bottom: 0 !important;
+}
+.layout-form .cloned-input {
+	position: relative;
+}
+.layout-form .err-txt {
+    color: #FF0000;
+    text-transform: capitalize;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
 .layout-form .img-upload > img {
 	width: 100px;
 }
@@ -767,7 +785,11 @@ form.layout-form {
 .layout-form button a, .layout-form .add_button:hover {
 	color: #fff !important;
 }
-.layout-form .form-btn, .add_button {
+.layout-form .add_button {
+	position: absolute;
+    top: 1px;
+}
+.layout-form .form-btn, .layout-form .add_button {
 	height: 30px;
 	border-radius: 8px;
 	padding: 10px 10px;
@@ -836,7 +858,7 @@ form.layout-form {
 	outline:0;
 }
 .layout-form .skill-input-list, .layout-form .responsibilities-input-list,
-.layout-form .education-input-list {
+.layout-form .education-input-list, .skills-input-section {
 	position: relative;
 }
 .layout-form .skill-list + div .remove_button {
@@ -852,7 +874,7 @@ form.layout-form {
 .layout-form .remove_button {
 	position: absolute;
 	top: 5px;
-	right: 8px;
+	right: 15px;
 	background: linear-gradient(132deg, rgba(62,190,214,0.7) 0%, #3e60d6 100%);
 	color: #fff;
 	padding: 5px;
@@ -871,13 +893,24 @@ form.layout-form {
 	width: calc(100% - 50px) !important;
 }
 .layout-form .skill-list, .layout-form .responsibilities-list, .layout-form .contact-list {
-	display: inline-block;
-	position: absolute !important;
-	right: 0;
-	bottom: 18px;
+	display: block;
+    position: absolute !important;
+    right: 41px;
+    top: 39px;
 }
 .layout-form .error-display {
 	color: red;
+}
+.layout-form .loader-image.active {
+	display: block;
+}
+.layout-form .loader-image {
+    display: none;
+	position: fixed;
+    height: 100px;
+    left: 47%;
+    top: 47%;
+    z-index: 999999;
 }
 /*SETTINGS*/
 .layout-form .settings h2 {
@@ -1015,6 +1048,9 @@ form.layout-form {
 	.layout-form h2.title {
 		margin-bottom: 25px;
 	}
+	.layout-form .loader-image {
+		width: 100px;
+	}
 }
 @media only screen and (max-width: 575px) {
 	form.layout-form {
@@ -1043,11 +1079,11 @@ form.layout-form {
 	.layout-form .name-align.job-title, .layout-form .name-align.institution, .layout-form .name-align.phone {
 		margin-right: 0;
 	}
-	.layout-form .skill-list, .layout-form .responsibilities-list, .layout-form .contact-list {
+/*	.layout-form .skill-list, .layout-form .responsibilities-list, .layout-form .contact-list {
 		right: 7px;
 		bottom: 19px;
-	}
-	.layout-form a.add_button {
+	}*/
+	.layout-form .add_button {
 		height: 25px;
 		padding: 13px 5px;
 	}
@@ -1070,6 +1106,9 @@ form.layout-form {
 	}
 	.layout-form .layout-button {
 		display: block;
+	}
+	.layout-form .loader-image {
+		width: 55px;
 	}
 }
 /*4.0 FORM-PAGE-END*/

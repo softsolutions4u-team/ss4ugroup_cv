@@ -8,8 +8,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 get_header();
 ?>
-<form id="site-content" class="layout-form" themeId="standard1" method="POST" enctype="multipart/form-data">
 
+<form id="site-content" class="layout-form" themeId="standard1" method="POST" enctype="multipart/form-data">
+	<img class="loader-image" src="<?php echo get_stylesheet_directory_uri(); ?>/images/loader.gif" />
 	<?php
 	// if $resume_post_id is exists get details and load the form with update.
 
@@ -121,7 +122,7 @@ get_header();
 						</li>
 						<li>
 							<i class="fas fa-caret-right mr-1"></i>
-							Maximum Size - 1.5MB</li>
+							Maximum Size - 1MB</li>
 						<li>
 							<i class="fas fa-caret-right mr-1"></i>
 							Upload only PNG, JPG, JPEG formats
@@ -182,7 +183,7 @@ get_header();
 						</li>
 						<li>
 							<i class="fas fa-caret-right mr-1"></i>
-							Maximum Size - 1.5MB</li>
+							Maximum Size - 1MB</li>
 						<li>
 							<i class="fas fa-caret-right mr-1"></i>
 							Upload only PNG, JPG, JPEG formats
@@ -200,47 +201,63 @@ get_header();
 				<p class="input-name">
 					Enter Skills
 				</p>
-				<?php if (empty($resume_post_id)) { ?>
-					<input data-length="25" class="input-field text-field" type="text" id="key_skills" name="key_skills[]" value="">
-							<a href="javascript:void(0);" class="add_button" title="Add field">
-								<i class="fas fa-plus-circle pointer m-0"></i>
-							</a>
+				<div class="clone-div">
+					<?php 
+						if ($resume_post_id) {
+							for ($i = 0; $i <= 6; $i++) {
+									if ($keyskill = get_post_meta($resume_post_id, 'key_skills_' . $i, true)) {
+									?>
+									<div class="cloned-input">
+										<input data-length="25" class="input-field text-field" type="text" name="key_skills[]" value="<?php echo $keyskill ?>">
+									   <span class="remove_button"><i class="fas fa-times pointer"></i></span>
+									</div>
+						            <?php 
+									}
+							}
+					   } ?>
+				</div>
+				<div class="skills-input-section <?php echo $resume_post_id ? 'fadeOut' : '' ?>">
+						<input data-length="25" class="input-field text-field" type="text" id="key_skills" name="key_skills[]" value="">
+						<span class="add_button" title="Add field"><i class="fas fa-plus-circle pointer m-0"></i></span>
+				</div>
+				<div class="err-txt" style="display:none">
+					enter text
+				</div>
 			</div>
-
-				<?php } else { ?>
-					<?php
-					for ($i = 0; $i <= 6; $i++) {
-						if ($keyskill = get_post_meta($resume_post_id, 'key_skills_' . $i, true)) {
-							?>
-							<div class="skill-input-list">
-								<input data-length="25" class="input-field text-field" type="text" id="key_skills" name="key_skills[]" value="<?php echo $keyskill ?>">
-								<a href="javascript:void(0);" class="remove_button"><i class="fas fa-times pointer"></i></a>
-							</div>
-						<?php } ?>
-					<?php } ?>
-					<a href="javascript:void(0);" class="add_button" title="Add field">
-						<i class="fas fa-plus-circle pointer m-0"></i>
-					</a>
-				<?php } ?>
+				
 <script>
-	$(document).ready(function () {
-jQuery(".add_button").bind("click", function () {
-			var ele = jQuery(this).parents().find('#key_skills');
-			var name = ele.attr('id');
-			if (jQuery('input[name="'+ name +'[]"]').length > 6) {
+$(document).ready(function () {
+		jQuery('body').on('click', '.add_button', function () {
+			var ele    = jQuery(this).parents().find('#key_skills');
+			var name   = ele.attr('id');
+			var strc   = GetDynamicTextBox(ele.val(), name);
+			if ( ele.val() === ""){
+				jQuery('.err-txt').show();
 				return false;
-			}
-			var strc = GetDynamicTextBox(ele.val(), name);
-			jQuery(".skills p").after(strc);
-			jQuery(this).prev().val("");
+			} else if ( jQuery('.clone-div input[name="'+ name +'[]"]').length === 6 ) {
+				jQuery(".clone-div").append(strc);
+				jQuery(this).parent().addClass('fadeOut');
+				jQuery('.err-txt').hide();
+				return false;
+			} else {
+				jQuery('.err-txt').hide();
+				jQuery(".clone-div").append(strc);
+				jQuery(this).prev().val("");
+			}	
+
 		});
 
 		jQuery('body').on('click', '.remove_button', function() {
 			jQuery(this).parent('div').remove();
+			if (jQuery('.clone-div input[name="key_skills[]"]').length === 6) {
+				jQuery('#key_skills').parent('div').removeClass('fadeOut');
+				jQuery('#key_skills').val("");
+				return false;
+			}
 		});
-	});
+});
 	function GetDynamicTextBox(value, name) {
-		return '<div style="position:relative"><input data-length="25" class="input-field text-field" type="text" name="'+name+'[]" value="'+ value +'"><a class="remove_button"><i class="fas fa-times pointer"></i></a><div>';
+		return '<div class="cloned-input"><input data-length="25" class="input-field text-field" type="text" name="'+name+'[]" value="'+ value +'"><span class="remove_button"><i class="fas fa-times pointer"></i></span></div>';
 	}
 				</script>
 
@@ -276,7 +293,7 @@ jQuery(".add_button").bind("click", function () {
 						</li>
 						<li>
 							<i class="fas fa-caret-right mr-1"></i>
-							Maximum Size - 1.5MB</li>
+							Maximum Size - 1MB</li>
 						<li>
 							<i class="fas fa-caret-right mr-1"></i>
 							Upload only PNG, JPG, JPEG formats
@@ -504,7 +521,7 @@ jQuery(".add_button").bind("click", function () {
 					</li>
 					<li>
 						<i class="fas fa-caret-right mr-1"></i>
-						Maximum Size - 1.5MB
+						Maximum Size - 1MB
 					</li>
 					<li>
 						<i class="fas fa-caret-right mr-1"></i>
@@ -553,7 +570,7 @@ jQuery(".add_button").bind("click", function () {
 					</li>
 					<li>
 						<i class="fas fa-caret-right mr-1"></i>
-						Maximum Size - 1.5MB</li>
+						Maximum Size - 1MB</li>
 					<li>
 						<i class="fas fa-caret-right mr-1"></i>
 						Upload only PNG, JPG, JPEG formats
@@ -782,7 +799,7 @@ jQuery(".add_button").bind("click", function () {
 					</li>
 					<li>
 						<i class="fas fa-caret-right mr-1"></i>
-						Maximum Size - 1.5MB</li>
+						Maximum Size - 1MB</li>
 					<li>
 						<i class="fas fa-caret-right mr-1"></i>
 						Upload only PNG, JPG, JPEG formats
@@ -901,10 +918,8 @@ jQuery(".add_button").bind("click", function () {
 	<div class="layout-button">
 		<input type="hidden" name="post_id" value="<?php echo $resume_post_id; ?>" />
 		<input type="hidden" name="page_template" value="standard1" />
-		<button class="form-btn" type="button" id="myBtn" style="pointer-events: none;">Preview
-		</button>
 		<!--<button class="form-btn" type="button">Create CV</button>-->
-		<button class="form-btn" type="submit"><?php echo $resume_post_id ? 'Submit' : 'Create CV' ?></button>
+		<button class="form-btn sumbit-btn" type="submit"><?php echo $resume_post_id ? 'Submit' : 'Save CV' ?></button>
 		<input type="hidden" name="action" value="resume" />
 	</div>
 </form>
@@ -952,21 +967,21 @@ var _URL = window.URL || window.webkitURL;
 $(".form-file-upload").change(function(e) {
 	var file, img;
 	var orginalEle = $(this);
-	var width = orginalEle.data('width');
-	var height = orginalEle.data('height');
-	if (width === undefined || height === undefined) {
-		width = 900;
-		height = 1600;
-	}
+// 	var width = orginalEle.data('width');
+// 	var height = orginalEle.data('height');
+// 	if (width === undefined || height === undefined) {
+// 		width = 900;
+// 		height = 1600;
+// 	}
 	if (file = this.files[0]) {
-		if ((file.size / 1024) > parseInt(1536)) {
-			alert('Maximum file size should be less than 1.5 MB');
+		if ((file.size / 1024) > parseInt(1125)) {
+			alert('Maximum file size should be less than 1MB');
 		} else {
 			img = new Image();
 			img.onload = function() {
-				if (this.width < 1700 || this.height < 1100 ) {
-					alert('Minimum resolution should be ' + width + " * " + height);
-				} else {
+// 				if (this.width < 1700 || this.height < 1100 ) {
+// 					alert('Minimum resolution should be ' + width + " * " + height);
+// 				} else {
 					var reader = new FileReader();
 
 					reader.onload = function (e) {
@@ -974,7 +989,7 @@ $(".form-file-upload").change(function(e) {
 						orginalEle.prev().attr('src', src).width(150).height(200);
 					};
 					reader.readAsDataURL(file);
-				}
+// 				}
 			};
 			img.onerror = function() {
 				alert( "Not a valid file: " + file.type);

@@ -12,10 +12,10 @@ function my_theme_enqueue_styles() {
 	wp_enqueue_style('bootstrap-js', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js');
 	wp_enqueue_style('bootstrap-slim-js', 'https://code.jquery.com/jquery-3.5.1.slim.min.js');
 	wp_enqueue_style('bootstrap-popper-js', 'https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js');
-	wp_enqueue_script('custom-script', get_stylesheet_directory_uri() . '/custom/js/script.js', array(), '0.1.31');
+	wp_enqueue_script('custom-script', get_stylesheet_directory_uri() . '/custom/js/script.js', array(), '0.1.33');
 	
    // 	CUSTOM-CSS-FILE
-	wp_enqueue_style('custom-style', get_stylesheet_directory_uri() . '/custom-style.css', array(), '0.1.29');
+	wp_enqueue_style('custom-style', get_stylesheet_directory_uri() . '/custom-style.css', array(), '0.1.32');
 }
 
 /*
@@ -455,7 +455,7 @@ function fileupload($image_field, $post_id)
 	$file_size = $_FILES[$image_field]["size"];
 	$file_type = strtolower(pathinfo($_FILES[$image_field]["name"], PATHINFO_EXTENSION));
 	$extensions = ['jpg', 'png', 'jpeg'];
-	if (empty($file_type) || $file_size === 0 || ($file_size / 1024) > 1536 || !in_array($file_type, $extensions)) {
+	if (empty($file_type) || $file_size === 0 || ($file_size / 1024) > 1125 || !in_array($file_type, $extensions)) {
 		return;
 	}
 
