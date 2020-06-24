@@ -657,7 +657,7 @@ div .layout-form .skills-input-section input {
 .layout-form .cloned-input {
 	position: relative;
 }
-.layout-form .err-txt {
+.layout-form .err-txt, .layout-form .err-txt-max {
     color: #FF0000;
     text-transform: capitalize;
     font-weight: 700;
