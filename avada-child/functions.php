@@ -12,7 +12,7 @@ function my_theme_enqueue_styles() {
 	wp_enqueue_style('bootstrap-js', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js');
 	wp_enqueue_style('bootstrap-slim-js', 'https://code.jquery.com/jquery-3.5.1.slim.min.js');
 	wp_enqueue_style('bootstrap-popper-js', 'https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js');
-	wp_enqueue_script('custom-script', get_stylesheet_directory_uri() . '/custom/js/script.js', array(), '0.1.33');
+	wp_enqueue_script('custom-script', get_stylesheet_directory_uri() . '/custom/js/script.js', array(), '0.1.34');
 	
    // 	CUSTOM-CSS-FILE
 	wp_enqueue_style('custom-style', get_stylesheet_directory_uri() . '/custom-style.css', array(), '0.1.32');
@@ -296,7 +296,7 @@ function add_custom_field_value_custom_resume_posttype() {
 		
 		$new_post = array(
 			'post_title'    => filter_input(INPUT_POST,'first_name'),
-			'post_status'   => 'publish',
+			'post_status'   => 'draft',
 			'post_type'     => 'resume' 
 		);
 		//wp_redirect( get_home_url().'/resume/'.filter_input(INPUT_POST,'first_name') );
@@ -307,7 +307,8 @@ function add_custom_field_value_custom_resume_posttype() {
 			$post_id = filter_input( INPUT_POST, 'post_id' );
 			$post = array(
 				'ID'             => $post_id,
-				'post_title'     => $_POST['first_name']
+				'post_title'     => $_POST['first_name'],
+				'value' => '1'
 			);
 			wp_update_post($post);
 			wp_redirect( get_home_url().'/my-account/resume' );
@@ -328,6 +329,8 @@ function add_custom_field_value_custom_resume_posttype() {
 		
 		//we now use $pid (post id) to help add out post meta data
 		$resume_form_inputs = [
+			'logo_show_hide',
+			'personal_profile_show_hide',
 			'first_name',
 			'last_name',
 			'personal_profile',

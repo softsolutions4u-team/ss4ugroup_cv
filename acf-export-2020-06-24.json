@@ -4,6 +4,25 @@
         "title": "standard1",
         "fields": [
             {
+                "key": "field_5ef30b5de4460",
+                "label": "logo_show_hide",
+                "name": "logo_show_hide",
+                "type": "true_false",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 1,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
                 "key": "field_5edde01c69cd0",
                 "label": "Basic Details",
                 "name": "",
@@ -96,6 +115,25 @@
                 },
                 "placement": "top",
                 "endpoint": 0
+            },
+            {
+                "key": "field_5ef325215c3af",
+                "label": "personal_profile_show_hide",
+                "name": "personal_profile_show_hide",
+                "type": "true_false",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 1,
+                "ui_on_text": "",
+                "ui_off_text": ""
             },
             {
                 "key": "field_5edde44e70b32",

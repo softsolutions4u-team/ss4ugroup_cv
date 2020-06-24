@@ -51,9 +51,11 @@ if (!defined('ABSPATH')) {
 						<div class="header-titles-wrapper">
 
 							<div class="site-logo fauxz">
-								<a href="/" class="custom-logo-link" rel="home">
-									<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/cvbrandmelogo.png" class="custom-logo" alt="cv">
-								</a>
+								<?php if (get_field('logo_show_hide') === false) { ?>
+									<a href="/" class="custom-logo-link" rel="home">
+										<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/cvbrandmelogo.png" class="custom-logo" alt="cv">
+									</a>
+								<?php } ?>
 							</div>
 
 							<a class="toggle nav-toggle cursor mobile-toggle">
@@ -74,12 +76,14 @@ if (!defined('ABSPATH')) {
 											<span>Home</span>
 										</a>
 									</li>
-									<li class="menu-item">
-										<a href="#about">
-											<i class="fas fa-user"></i>
-											<span>About</span>
-										</a>
-									</li>
+									<?php if (get_field('personal_profile_show_hide') === false) { ?>
+										<li class="menu-item">
+											<a href="#about">
+												<i class="fas fa-user"></i>
+												<span>About</span>
+											</a>
+										</li>
+									<?php } ?>
 									<li class="menu-item">
 										<a href="#experience">
 											<i class="far fa-lightbulb"></i>

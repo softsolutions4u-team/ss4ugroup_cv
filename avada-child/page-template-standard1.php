@@ -42,6 +42,7 @@ foreach ($image_fields as $image_field => $defalutImage ) {
         </div>
     </div>
     <div class="profile-details">
+		<?php if (get_field('personal_profile_show_hide') === false) { ?>
         <div id="about" class="personal-profile page-section-2">
             <div class="width-60">
                 <div class="about-content">
@@ -75,6 +76,7 @@ foreach ($image_fields as $image_field => $defalutImage ) {
                 </div>
             </div>
         </div><!--PERSONAL-DETAILS-->
+		<?php } ?>
         <div id="experience" class="work-experience page-section-3">
             <div class="width-60">
                 <div class="section bg-grey">

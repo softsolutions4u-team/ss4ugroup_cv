@@ -3,7 +3,7 @@ jQuery(document).ready(function () {
 	//	ADD THEME ID TO BODY FOR VERIFICATION
 	var themeId = jQuery("#site-content").attr("themeId");
 	jQuery("body").addClass(themeId);
-	
+
 	//MOBILE NAV TOGGLE
 	jQuery('body .mobile-toggle').click(function () {
 		if (jQuery('body .menu-modal').hasClass('active')) {
@@ -27,6 +27,35 @@ jQuery(document).ready(function () {
 		jQuery(this).toggleClass('active');
 	});
 
+	//	HIDE SECTION DYNAMICALLY BASED ON TOGGLE SECTION
+
+	//	HIDE LOGO
+	var logoHide = document.getElementById("logoHide");
+	document.getElementById("logoHide").addEventListener("change", function (element) {
+		document.getElementById("logoHide").value = logoHide.checked;
+	});
+
+	var a = jQuery('#logoHide').prop("value");
+	if ( a === '1' ) {
+		document.getElementById("logoHide").checked = true;
+	} else if ( a === '0' ) {
+		document.getElementById("logoHide").checked = false;
+	}
+	
+	//	PERSONAL PROFILE HIDE
+	
+	var personalProfile = document.getElementById("personalProfile");
+	document.getElementById("personalProfile").addEventListener("change", function (element) {
+		document.getElementById("personalProfile").value = personalProfile.checked;
+	});
+
+	var a = jQuery('#personalProfile').prop("value");
+	if ( a === '1' ) {
+		document.getElementById("personalProfile").checked = true;
+	} else if ( a === '0' ) {
+		document.getElementById("personalProfile").checked = false;
+	}
+
 	//	SMOOTH SCROLL
 	jQuery('.menu-modal a[href*="#"],header a[href*="#"], a.cv-btn').on('click', function (e) {
 		e.preventDefault()
@@ -35,12 +64,12 @@ jQuery(document).ready(function () {
 					scrollTop: jQuery(jQuery(this).attr('href')).offset().top,
 				}, 800, 'linear')
 	});
-	
-    // 	LOADING BAR ACTIVE
+
+	// 	LOADING BAR ACTIVE
 	jQuery('.layout-form .sumbit-btn').click(function () {
 		jQuery('.loader-image').addClass('active');
 	});
-	
+
 	//	COLOR PALLET SELECTION
 	if (jQuery('body').hasClass('video1')) {
 		jQuery('body .color-code.black').addClass('active');
@@ -59,9 +88,9 @@ jQuery(document).ready(function () {
 			jQuery(this).addClass('active');
 		}
 	});
-	
+
 // 	jQuery("#fname, #lname").bind("keyup", function(event) {
-          //  var regex = /^[a-zA-Z\-\.\_\,\s]+$/;
+	//  var regex = /^[a-zA-Z\-\.\_\,\s]+$/;
 //             jQuery(this).attr('maxlength',jQuery(this).attr('data-length') );
 //             jQuery(this).parent().find('span.error-display').text("");
 //             if (regex.test(jQuery(this).val()) || jQuery(this).val()=="") {
@@ -70,9 +99,9 @@ jQuery(document).ready(function () {
 //                     jQuery(this).parent().find('span.error-display').text("Entered Maximum Character");
 //                     }
 //             } 
-		//else {
-          //      jQuery(this).parent().find('span.error-display').text("Only Alphabet and - and .");
-            //}
+	//else {
+	//      jQuery(this).parent().find('span.error-display').text("Only Alphabet and - and .");
+	//}
 //         });
 // 	jQuery('#fname, #lname').bind("cut copy paste", function(e) {
 // 		e.preventDefault();
@@ -80,65 +109,64 @@ jQuery(document).ready(function () {
 // 			e.preventDefault();
 // 		});
 // 	});
-	jQuery("#fname, #lname, .mobile-number, .dateWork, .dateEducation").bind("keyup", function(event) { 
-		 jQuery(this).attr('maxlength',jQuery(this).attr('data-length') );
+	jQuery("#fname, #lname, .mobile-number, .dateWork, .dateEducation").bind("keyup", function (event) {
+		jQuery(this).attr('maxlength', jQuery(this).attr('data-length'));
 	});
 	jQuery('#fname, #lname').on('keypress', function (event) {
-			var regex = new RegExp("^[a-zA-Z\-\_\.\,\s]+$");
-			var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-			if (!regex.test(key)) {
-			   event.preventDefault();
-			   return false;
-			}
-		});
+		var regex = new RegExp("^[a-zA-Z\-\_\.\,\s]+$");
+		var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+		if (!regex.test(key)) {
+			event.preventDefault();
+			return false;
+		}
+	});
 	jQuery(".mobile-number").keypress(function (e) {
-			 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-					   return false;
-			 }
-		});
+		if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+			return false;
+		}
+	});
 	jQuery(".dateWork, .dateEducation").on('keydown', function (e) {
-            IsNumeric(this, e.keyCode);
-        });
-        var isShift = false;
-        var seperator = "/";
-        function IsNumeric(input, keyCode) {
-            if (keyCode == 16) {
-                isShift = true;
-            }
-            //Allow only Numeric Keys.
-            if (((keyCode >= 48 && keyCode <= 57) || keyCode == 8 || keyCode <= 37 || keyCode <= 39 || (keyCode >= 96 && keyCode <= 105)) && isShift == false) {
-                if ((input.value.length == 2 || input.value.length == 5) && keyCode != 8) {
-                    input.value += seperator;
-                }
-                return true;
-            }
-            else {
-                return false;
-            }
-        };
-	
-		var equalHeight = jQuery('.login-form .width-40').height()-75;
-        jQuery('.login-form .width-60').css('height',equalHeight);
+		IsNumeric(this, e.keyCode);
+	});
+	var isShift = false;
+	var seperator = "/";
+	function IsNumeric(input, keyCode) {
+		if (keyCode == 16) {
+			isShift = true;
+		}
+		//Allow only Numeric Keys.
+		if (((keyCode >= 48 && keyCode <= 57) || keyCode == 8 || keyCode <= 37 || keyCode <= 39 || (keyCode >= 96 && keyCode <= 105)) && isShift == false) {
+			if ((input.value.length == 2 || input.value.length == 5) && keyCode != 8) {
+				input.value += seperator;
+			}
+			return true;
+		} else {
+			return false;
+		}
+	}
+	;
 
-        jQuery(".current-password").click(function() {
-        var temp = document.getElementById("password"); 
-            if (temp.type === "password") { 
-                temp.type = "text"; 
-            } 
-            else { 
-                temp.type = "password"; 
-            } 
-        });
-   
-	
+	var equalHeight = jQuery('.login-form .width-40').height() - 75;
+	jQuery('.login-form .width-60').css('height', equalHeight);
+
+	jQuery(".current-password").click(function () {
+		var temp = document.getElementById("password");
+		if (temp.type === "password") {
+			temp.type = "text";
+		} else {
+			temp.type = "password";
+		}
+	});
+
+
 });
-jQuery(window).resize(function(){
-    var equalHeight = jQuery('.login-form  .width-40').height()-75;
-    jQuery('.login-form .width-60').css('height',equalHeight);
+jQuery(window).resize(function () {
+	var equalHeight = jQuery('.login-form  .width-40').height() - 75;
+	jQuery('.login-form .width-60').css('height', equalHeight);
 });
-jQuery(window).scroll(function(){
-    var equalHeight = jQuery('.login-form .width-40').height();
-    jQuery('.login-form .width-60').css('height',equalHeight);
+jQuery(window).scroll(function () {
+	var equalHeight = jQuery('.login-form .width-40').height();
+	jQuery('.login-form .width-60').css('height', equalHeight);
 });
 
 
